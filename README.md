@@ -26,3 +26,7 @@ Input is a name of a book the output is informations about the book
 ## `waitingforesult.py`
 
 A program that print slowly dots waiting for the results
+
+## `password_generator.py`
+
+A program that generate passwords for users and they can specify the number of characters
