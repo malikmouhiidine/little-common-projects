@@ -1,5 +1,5 @@
 function displayCurrentColor() {
-  const body = getComputedStyle(document.getElementsByTagName('body')[0]).backgroundImage
+  const body = document.body.style.backgroundImage
   const title = document.getElementsByTagName('h2')[0]
   title.textContent = `body { height: 100vh; background-image: ${body} }`
 }
