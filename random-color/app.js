@@ -1,6 +1,6 @@
 function displayCurrentColor() {
   const body = document.body.style.backgroundImage;
-  const title = document.getElementsByTagName("h2")[0];
+  const title = document.querySelector("h2");
   title.textContent = `body { height: 100vh; background-image: ${body} }`;
 }
 
