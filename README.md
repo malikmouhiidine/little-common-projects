@@ -34,3 +34,7 @@ A program that generate passwords for users and they can specify the number of c
 ## `random-color`
 
 Web page with a different background color every time you click a button and gives you the RGB too.
+
+## `xo-game.py`
+
+Playing tic-tac-toe against python.
