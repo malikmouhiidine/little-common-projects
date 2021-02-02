@@ -11,10 +11,7 @@ def Place(n):
 
 def python_turn():
     python_choice = random.randint(0, 8)
-    if not python_choice in game_history:
-        game_history[python_choice] = 'O'
-    else:
-        python_turn()
+    game_history[python_choice] = 'O' if not python_choice in game_history else python_turn()
 
 
 def check_win():
