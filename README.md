@@ -30,3 +30,7 @@ A program that print slowly dots waiting for the results
 ## `password_generator.py`
 
 A program that generate passwords for users and they can specify the number of characters
+
+## `random-color`
+
+Web page with a different background color every time you click a button and gives you the RGB too.
