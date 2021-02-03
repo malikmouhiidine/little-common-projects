@@ -27,10 +27,10 @@ def check_win():
 
 
 def Win(n):
-    new_dict = {}
+    n_places_dict = {}
     for k, v in game_history.items():
-        new_dict.setdefault(v, []).append(k)
-    # print(new_dict[n])  # debugging print statement
+        n_places_dict.setdefault(v, []).append(k)
+    # print(n_places_dict[n])  # debugging print statement
     winning_combination = [
         [0, 1, 2],
         [3, 4, 5],
@@ -43,7 +43,7 @@ def Win(n):
     ]
     for i in winning_combination:
         # print(i)  # debugging print statement
-        if all(elem in new_dict[n] for elem in i):
+        if all(elem in n_places_dict[n] for elem in i):
             return True
     return False
 
