@@ -38,3 +38,7 @@ Web page with a different background color every time you click a button and giv
 ## `xo-game.py`
 
 Playing tic-tac-toe against python.
+
+## `QR generate with python`
+
+A qr generator, give him the link and what you want to name the file and boom! here it is in your directory
