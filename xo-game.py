@@ -9,12 +9,12 @@ def Place(n):
     return str(n)
 
 
-def python_turn():
-    python_choice = random.randint(0, 8)
-    if not python_choice in game_history:
-        game_history[python_choice] = 'O'
-    else:
-        python_turn()
+def python_turn(turn):
+    if turn == 0:
+        if not 4 in game_history:
+            game_history[4] = 'O'
+        else:
+            game_history[2] = 'O'
 
 
 def check_win():
@@ -61,7 +61,7 @@ def table():
 
 for turn in range(5):
     print('Round: ' + str(turn+1))
-    # print(game_history)  # debugging print statement
+    print(game_history)  # debugging print statement
     table()
     user_choice = int(input("You're turn: "))
     if user_choice not in game_history:
@@ -70,7 +70,7 @@ for turn in range(5):
         print('\nplease make sure to print the right value\n')
         exit()
     if turn != 4:
-        python_turn()
+        python_turn(turn)
     os.system('cls' if os.name == 'nt' else 'clear')
     check_win()
 
