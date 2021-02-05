@@ -33,6 +33,10 @@ def python_turn(turn):
             game_history[last_player_move - 1] = 'O'
         elif not last_player_move + 1 > 8 and not last_player_move + 1 in game_history:
             game_history[last_player_move + 1] = 'O'
+        elif not last_player_move - 2 < 0 and not last_player_move - 2 in game_history:
+            game_history[last_player_move - 2] = 'O'
+        elif not last_player_move + 2 > 8 and not last_player_move + 2 in game_history:
+            game_history[last_player_move + 2] = 'O'
     else:
         for k, v in game_history.items():
             n_places_dict.setdefault(v, []).append(k)
@@ -44,7 +48,7 @@ def python_turn(turn):
                             game_history[j] = n
                             return True
             for i in winning_combination:
-                if any(elem in i for elem in n_places_dict[n][:2]):
+                if any(elem in i for elem in n_places_dict[n]):
                     for j in i:
                         if not j in game_history:
                             game_history[j] = n
