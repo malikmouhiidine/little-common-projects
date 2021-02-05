@@ -10,11 +10,18 @@ def Place(n):
 
 
 def python_turn(turn):
+    game_history_aslist = list(game_history.items())
+    last_player_move = game_history_aslist[-1][0]
     if turn == 0:
         if not 4 in game_history:
             game_history[4] = 'O'
         else:
             game_history[2] = 'O'
+    elif turn == 1:
+        if not last_player_move - 1 < 0 and not last_player_move - 1 in game_history:
+            game_history[last_player_move - 1] = 'O'
+        elif not last_player_move + 1 > 8 and not last_player_move + 1 in game_history:
+            game_history[last_player_move + 1] = 'O'
 
 
 def check_win():
