@@ -50,8 +50,6 @@ def python_turn(turn):
             game_history[4] = 'O'
         else:
             game_history[2] = 'O'
-    elif turn == 1:
-        dumb_move(last_player_move)
     else:
         for k, v in game_history.items():
             n_places_dict.setdefault(v, []).append(k)
