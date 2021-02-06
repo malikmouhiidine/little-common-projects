@@ -37,7 +37,7 @@ def smart_move():
             if all(elem in i for elem in n_places_dict[n]):
                 for j in i:
                     if not j in game_history:
-                        game_history[j] = n
+                        game_history[j] = 'O'
                         return True
     return False
 
