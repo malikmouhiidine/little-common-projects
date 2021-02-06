@@ -1,5 +1,4 @@
 import os
-import time
 game_history = {}
 winning_combination = [
     [0, 1, 2],
@@ -20,6 +19,19 @@ def Place(n):
     return str(n)
 
 
+def dumb_move(last_player_move):
+    if not last_player_move - 1 < 0 and not last_player_move - 1 in game_history:
+        game_history[last_player_move - 1] = 'O'
+    elif not last_player_move + 1 > 8 and not last_player_move + 1 in game_history:
+        game_history[last_player_move + 1] = 'O'
+    elif not last_player_move - 2 < 0 and not last_player_move - 2 in game_history:
+        game_history[last_player_move - 2] = 'O'
+    elif not last_player_move + 2 > 8 and not last_player_move + 2 in game_history:
+        game_history[last_player_move + 2] = 'O'
+    else:
+        return False
+
+
 def python_turn(turn):
     game_history_aslist = list(game_history.items())
     last_player_move = game_history_aslist[-1][0]
@@ -29,26 +41,13 @@ def python_turn(turn):
         else:
             game_history[2] = 'O'
     elif turn == 1:
-        if not last_player_move - 1 < 0 and not last_player_move - 1 in game_history:
-            game_history[last_player_move - 1] = 'O'
-        elif not last_player_move + 1 > 8 and not last_player_move + 1 in game_history:
-            game_history[last_player_move + 1] = 'O'
-        elif not last_player_move - 2 < 0 and not last_player_move - 2 in game_history:
-            game_history[last_player_move - 2] = 'O'
-        elif not last_player_move + 2 > 8 and not last_player_move + 2 in game_history:
-            game_history[last_player_move + 2] = 'O'
+        dumb_move(last_player_move)
     else:
         for k, v in game_history.items():
             n_places_dict.setdefault(v, []).append(k)
         for n in ['O', 'X']:
             for i in winning_combination:
                 if all(elem in i for elem in n_places_dict[n]):
-                    for j in i:
-                        if not j in game_history:
-                            game_history[j] = n
-                            return True
-            for i in winning_combination:
-                if any(elem in i for elem in n_places_dict[n]):
                     for j in i:
                         if not j in game_history:
                             game_history[j] = n
