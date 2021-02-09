@@ -32,14 +32,7 @@ def dumb_move(last_player_move):
 
 
 def smart_move():
-    for n in ['O', 'X']:
-        for i in winning_combination:
-            if all(elem in i for elem in n_places_dict[n]):
-                for j in i:
-                    if not j in game_history:
-                        game_history[j] = 'O'
-                        return True
-    return False
+    return 'Do minmax Algorithm'
 
 
 def python_turn(turn):
@@ -53,8 +46,7 @@ def python_turn(turn):
     else:
         for k, v in game_history.items():
             n_places_dict.setdefault(v, []).append(k)
-        if smart_move() == False:
-            dumb_move(last_player_move)
+        dumb_move(last_player_move)
 
 
 def check_win():
