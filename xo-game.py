@@ -44,8 +44,6 @@ def python_turn(turn):
         else:
             game_history[2] = 'O'
     else:
-        for k, v in game_history.items():
-            n_places_dict.setdefault(v, []).append(k)
         dumb_move(last_player_move)
 
 
