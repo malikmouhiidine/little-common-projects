@@ -32,7 +32,13 @@ def dumb_move(last_player_move):
 
 
 def smart_move():
-    return 'Do minmax Algorithm'
+    if Win('X'):
+        score = 1
+    elif Win('O'):
+        score = -1
+    else:
+        score = 0
+    return score
 
 
 def python_turn(turn):
