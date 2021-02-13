@@ -31,14 +31,29 @@ def dumb_move(last_player_move):
     return False
 
 
-def smart_move():
-    if Win('X'):
-        score = 1
-    elif Win('O'):
-        score = -1
+def minimax(depth, board, is_maximizing_player_turn):
+    # loop from 0 to 9 excluding what's already in the board
+    gen = (i for i in range(0, 9) if i not in board)
+    if len(board) == 9:
+        if Win('X'):
+            value = 1
+        elif Win('O'):
+            value = -1
+        else:
+            value = 0
+        return value
+    if is_maximizing_player_turn:
+        best_val = -float('inf')
+        for i in gen:
+            value = minimax(depth+1, board, False)
+            best_val = max(best_val, value)
+        return best_val
     else:
-        score = 0
-    return score
+        best_val = float('inf')
+        for i in gen:
+            value = minimax(depth+1, board, True)
+            best_val = min(best_val, value)
+        return best_val
 
 
 def python_turn(turn):
@@ -50,7 +65,8 @@ def python_turn(turn):
         else:
             game_history[2] = 'O'
     else:
-        dumb_move(last_player_move)
+        # dumb_move(last_player_move)
+        minimax(0, game_history, True)
 
 
 def check_win():
