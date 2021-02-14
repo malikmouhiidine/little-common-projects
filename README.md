@@ -37,7 +37,7 @@ Web page with a different background color every time you click a button and giv
 
 ## `xo-game.py`
 
-Playing tic-tac-toe against python using minmax algorithm (NOTE: TODO).
+Playing tic-tac-toe against python using minmax algorithm (NOTE: WORKING ON).
 
 ## `QR generate with python`
 
