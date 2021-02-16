@@ -20,40 +20,40 @@ def Place(n):
     return str(n)
 
 
-def dumb_move(last_player_move):
-    for i in range(9):
-        if not last_player_move - (i + 1) < 0 and not last_player_move - (i + 1) in game_history:
-            game_history[last_player_move - (i + 1)] = 'O'
-            return True
-        elif not last_player_move + (i + 1) > 8 and not last_player_move + (i + 1) in game_history:
-            game_history[last_player_move + (i + 1)] = 'O'
-            return True
-    return False
-
-
-def minimax(depth, board, is_maximizing_player_turn):
+def minimax(board, player):
     # loop from 0 to 9 excluding what's already in the board
-    gen = (i for i in range(0, 9) if i not in board)
+    available_spots = (
+        available_spot for available_spot in range(0, 9) if available_spot not in board)
+    if Win('X'):
+        return {'score': 1}
+    elif Win('O'):
+        return {'score': -1}
     if len(board) == 9:
-        if Win('X'):
-            value = 1
-        elif Win('O'):
-            value = -1
+        return {'score': 0}
+    moves = []
+    for available_spot in available_spots:
+        move = {}
+        board[available_spot] = player
+        move['index'] = available_spot
+        if player == 'O':
+            result = minimax(board, 'X')
+            move['score'] = result['score']
         else:
-            value = 0
-        return value
-    if is_maximizing_player_turn:
-        best_val = -float('inf')
-        for i in gen:
-            value = minimax(depth+1, board, False)
-            best_val = max(best_val, value)
-        return best_val
-    else:
-        best_val = float('inf')
-        for i in gen:
-            value = minimax(depth+1, board, True)
-            best_val = min(best_val, value)
-        return best_val
+            result = minimax(board, 'O')
+            move['score'] = result['score']
+
+        moves.append(move)
+        if player == 'O':
+            best_score = -float('inf')
+            for i in range(len(moves)):
+                if moves[i]['score'] > best_score:
+                    best_move = i
+        else:
+            best_score = float('inf')
+            for i in range(len(moves)):
+                if moves[i]['score'] < best_score:
+                    best_move = i
+    return moves[best_move]
 
 
 def python_turn(turn):
@@ -65,8 +65,8 @@ def python_turn(turn):
         else:
             game_history[2] = 'O'
     else:
-        # dumb_move(last_player_move)
-        minimax(0, game_history, True)
+        board = game_history.copy()
+        game_history[minimax(board, 'O')['index']] = 'O'
 
 
 def check_win():
