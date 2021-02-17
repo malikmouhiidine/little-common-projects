@@ -25,9 +25,9 @@ def minimax(board, player):
     available_spots = (
         available_spot for available_spot in range(0, 9) if available_spot not in board)
     if Win('X'):
-        return {'score': 1}
-    elif Win('O'):
         return {'score': -1}
+    elif Win('O'):
+        return {'score': 1}
     if len(board) == 9:
         return {'score': 0}
     moves = []
