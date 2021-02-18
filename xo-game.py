@@ -1,5 +1,5 @@
 import os
-import time
+from time import sleep
 game_history = {}
 winning_combination = [
     [0, 1, 2],
@@ -20,40 +20,8 @@ def Place(n):
     return str(n)
 
 
-def minimax(board, player):
-    # loop from 0 to 9 excluding what's already in the board
-    available_spots = (
-        available_spot for available_spot in range(0, 9) if available_spot not in board)
-    if Win('X'):
-        return {'score': -1}
-    elif Win('O'):
-        return {'score': 1}
-    if len(board) == 9:
-        return {'score': 0}
-    moves = []
-    for available_spot in available_spots:
-        move = {}
-        board[available_spot] = player
-        move['index'] = available_spot
-        if player == 'O':
-            result = minimax(board, 'X')
-            move['score'] = result['score']
-        else:
-            result = minimax(board, 'O')
-            move['score'] = result['score']
-
-        moves.append(move)
-        if player == 'O':
-            best_score = -float('inf')
-            for i in range(len(moves)):
-                if moves[i]['score'] > best_score:
-                    best_move = i
-        else:
-            best_score = float('inf')
-            for i in range(len(moves)):
-                if moves[i]['score'] < best_score:
-                    best_move = i
-    return moves[best_move]
+def minimax():
+    return 1
 
 
 def python_turn(turn):
@@ -64,7 +32,8 @@ def python_turn(turn):
             game_history[2] = 'O'
     else:
         board = game_history.copy()
-        game_history[minimax(board, 'O')['index']] = 'O'
+        minimax()
+        # game_history[minimax()] = 'O'
 
 
 def check_win():
